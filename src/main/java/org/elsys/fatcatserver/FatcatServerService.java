@@ -18,7 +18,7 @@ public class FatcatServerService {
         return fatcatServerRepository.findAll();
     }
 
-    public void deletePerson(int personId) {
+    public void deletePerson(Long personId) {
         fatcatServerRepository.deleteById(personId);
     }
 }

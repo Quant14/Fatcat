@@ -24,7 +24,7 @@ public class FatcatServerController {
     }
 
     @RequestMapping(value = "/person/{personid}",method = RequestMethod.DELETE)
-    public void deletePerson(@PathVariable(value = "personid") int id){
+    public void deletePerson(@PathVariable(value = "personid") Long id){
         fatcatServerService.deletePerson(id);
     }
 }
