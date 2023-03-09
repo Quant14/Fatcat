@@ -1,4 +1,3 @@
-CREATE DATABASE fatcatDB;
 USE fatcatDB;
 
 CREATE TABLE Person(
@@ -6,5 +5,5 @@ CREATE TABLE Person(
 	name VARCHAR(100) NOT NULL,
 	sector VARCHAR(10) NOT NULL,
     description VARCHAR(300) NOT NULL,
-    danger ENUM("LOW", "MEDIUM", "HIGH") NOT NULL
+    danger int CHECK(danger >=1 AND danger <=5) NOT NULL
 );
