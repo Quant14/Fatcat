@@ -1,4 +1,4 @@
-package logic;
+package org.elsys.fatcatserver.logic;
 import java.util.List;
 import java.util.Map;
 
