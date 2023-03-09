@@ -30,7 +30,7 @@ public class Fatcat extends JDialog{
             @Override
             public void actionPerformed(ActionEvent e) {
                 person.name= tf1.getText();
-                if(person.name.equals("yana")) {
+                if(!(person.name.equals("tup"))) {
                     JOptionPane.showMessageDialog(Fatcat.this, "You're in!",
                             "done", JOptionPane.INFORMATION_MESSAGE);
                     //setContentPane(panel1);
@@ -48,7 +48,7 @@ public class Fatcat extends JDialog{
             public void actionPerformed(ActionEvent e) {
                 dispose();
                 setVisible(false);
-                exit(1);
+                exit(2);
             }
         });
     }
