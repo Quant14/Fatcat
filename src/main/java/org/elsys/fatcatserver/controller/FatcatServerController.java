@@ -1,6 +1,6 @@
 package org.elsys.fatcatserver.controller;
 
-import org.elsys.fatcatserver.*;
+import org.elsys.fatcatserver.module.AdminSettings;
 import org.elsys.fatcatserver.module.Person;
 import org.elsys.fatcatserver.service.FatcatServerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,11 +18,13 @@ public class FatcatServerController {
     @Autowired
     FatcatServerService fatcatServerService;
 
-    //@RequestMapping(value = "/admin", method = RequestMethod.POST)
-    //public void readAdminPanel(@RequestBody )
+    @RequestMapping(value = "/admin", method = RequestMethod.POST)
+    public AdminSettings readAdminPanel(@RequestBody AdminSettings adminSettings){
+        return fatcatServerService.setAdminSettings(adminSettings);
+    }
 
     @RequestMapping(value = "/person",method = RequestMethod.POST)
-    public Person creatPerson(@RequestBody Person person) {
+    public Person createPerson(@RequestBody Person person) {
         return fatcatServerService.createPerson(person);
     }
     @RequestMapping(value = "/person",method = RequestMethod.GET)

@@ -12,6 +12,14 @@ public class Sectors {
 
     @Column(name="guards")
     private String guards;
+
+    public String getGuards() {
+        return guards;
+    }
+
+    public void setGuards(String guards) {
+        this.guards = guards;
+    }
 }
 
 
