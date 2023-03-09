@@ -14,7 +14,6 @@ public class AES256{
 
     public static String encrypt(String strToEncrypt) {
         try {
-            System.out.println("In encryption with: " + strToEncrypt);
             byte[] iv = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
             IvParameterSpec ivspec = new IvParameterSpec(iv);
 
