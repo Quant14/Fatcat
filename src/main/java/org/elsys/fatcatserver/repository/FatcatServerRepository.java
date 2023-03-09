@@ -1,5 +1,6 @@
-package org.elsys.fatcatserver;
+package org.elsys.fatcatserver.repository;
 
+import org.elsys.fatcatserver.*;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

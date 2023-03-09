@@ -1,5 +1,7 @@
-package org.elsys.fatcatserver;
+package org.elsys.fatcatserver.service;
 
+import org.elsys.fatcatserver.*;
+import org.elsys.fatcatserver.repository.FatcatServerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -7,6 +9,7 @@ import java.util.List;
 
 @Service
 public class FatcatServerService {
+
     @Autowired
     FatcatServerRepository fatcatServerRepository;
 
@@ -21,4 +24,8 @@ public class FatcatServerService {
     public void deletePerson(Long personId) {
         fatcatServerRepository.deleteById(personId);
     }
+
+    /*public LinkedList<String> setSectors(LinkedList<String> sectors){
+        return processData.setSectors(sectors);
+    }*/
 }

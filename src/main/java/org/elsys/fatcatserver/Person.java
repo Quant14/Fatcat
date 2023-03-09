@@ -1,6 +1,5 @@
 package org.elsys.fatcatserver;
 
-
 import jakarta.persistence.*;
 
 @Entity

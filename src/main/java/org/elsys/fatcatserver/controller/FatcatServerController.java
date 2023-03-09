@@ -1,4 +1,7 @@
-package org.elsys.fatcatserver;
+package org.elsys.fatcatserver.controller;
+
+import org.elsys.fatcatserver.*;
+import org.elsys.fatcatserver.service.FatcatServerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,6 +17,9 @@ public class FatcatServerController {
     @Autowired
     FatcatServerService fatcatServerService;
 
+    //@RequestMapping(value = "/admin", method = RequestMethod.POST)
+    //public void readAdminPanel(@RequestBody )
+
     @RequestMapping(value = "/person",method = RequestMethod.POST)
     public Person creatPerson(@RequestBody Person person) {
         return fatcatServerService.createPerson(person);
@@ -24,7 +30,10 @@ public class FatcatServerController {
     }
 
     @RequestMapping(value = "/person/{personid}",method = RequestMethod.DELETE)
-    public void deletePerson(@PathVariable(value = "personid") Long id){
+    public void delGETetePerson(@PathVariable(value = "personid") Long id){
         fatcatServerService.deletePerson(id);
     }
+
+    /*@RequestMapping(value = "/sectors", method = RequestMethod.POST)
+    public LinkedList<String> readSectors(@RequestBody LinkedList<String> sectors){ return fatcatServerService.setSectors(sectors); }*/
 }
