@@ -1,6 +1,7 @@
 package org.elsys.fatcatserver.controller;
 
 import org.elsys.fatcatserver.*;
+import org.elsys.fatcatserver.module.Person;
 import org.elsys.fatcatserver.service.FatcatServerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;

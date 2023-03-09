@@ -1,4 +1,4 @@
-package org.elsys.fatcatserver;
+package org.elsys.fatcatserver.module;
 
 import jakarta.persistence.*;
 
@@ -20,7 +20,7 @@ public class Person {
     private String description;
 
     @Column(name="danger")
-    private Integer danger;
+    private String danger;
 
     public String getName() {
         return name;
@@ -46,11 +46,11 @@ public class Person {
         this.description = description;
     }
 
-    public Integer getDanger() {
+    public String getDanger() {
         return danger;
     }
 
-    public void setDanger(Integer danger) {
+    public void setDanger(String danger) {
         this.danger = danger;
     }
 }
