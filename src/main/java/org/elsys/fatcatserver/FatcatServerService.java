@@ -14,11 +14,11 @@ public class FatcatServerService {
         return fatcatServerRepository.save(person);
     }
 
-    public List<Person> getEmployees() {
+    public List<Person> getPerson() {
         return fatcatServerRepository.findAll();
     }
 
-    public void deleteEmployee(int personId) {
+    public void deletePerson(int personId) {
         fatcatServerRepository.deleteById(personId);
     }
 }
