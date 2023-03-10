@@ -8,7 +8,7 @@ import java.awt.event.ActionListener;
 
 public class addPerson extends JDialog{
 
-    Person person=new Person();
+    private Person person=new Person();
     private JPanel panel1;
     private JTextField tf1;
     private JTextField tf2;
