@@ -1,6 +1,8 @@
 import okhttp3.*;
+import org.w3c.dom.stylesheets.LinkStyle;
 
 import java.io.IOException;
+import java.util.List;
 
 public class Requests {
     public Requests(){
@@ -70,6 +72,23 @@ public class Requests {
                 .build();
         try {
             Response response = client.newCall(request).execute();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static List<Integer> processData(){
+        OkHttpClient client = new OkHttpClient().newBuilder()
+                .build();
+        MediaType mediaType = MediaType.parse("text/plain");
+        RequestBody body = RequestBody.create(mediaType, "");
+        Request request = new Request.Builder()
+                .url("localhost:8080/api/processData")
+                .method("GET", body)
+                .build();
+        try {
+            Response response = client.newCall(request).execute();
+            return response.body().string();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
