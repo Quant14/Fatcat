@@ -35,7 +35,7 @@ public class FatcatServerController {
         return fatcatServerService.getAdminSettings();
     }
 
-    @RequestMapping(value = "/admin/sectorcnt", method = RequestMethod.POST)
+    @RequestMapping(value = "/admin/sectorcnt", method = RequestMethod.GET)
     public int getSectorCnt(){
         return fatcatServerService.getSectorCnt();
     }
@@ -71,7 +71,8 @@ public class FatcatServerController {
 
     @RequestMapping(value = "/processData", method = RequestMethod.GET)
     public List<Integer> processData(){
-        return fatcatServerService.processData(guardService.execute());
+        List<Sectors> arr = guardService.execute();
+        return fatcatServerService.processData(arr);
     }
 
     @RequestMapping(value = "/sectors",method = RequestMethod.GET)
