@@ -16,6 +16,10 @@ public class Sectors {
     public Sectors() {
     }
 
+    public Sectors(String guards){
+        this.guards=guards;
+    }
+
     public String getGuards() {
         return guards;
     }

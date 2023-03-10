@@ -61,8 +61,8 @@ public class GuardService {
             guards_for_this_sector = Math.round(guards_for_this_sector);
             String for_database = AES256.encrypt(Integer.toString((int) guards_for_this_sector));
             fatcatServerSectorsRepository.findAll().get(i - 1).setGuards(for_database);
-
         }
+        fatcatServerSectorsRepository.flush();
     }
 
     public List<Sectors> execute() {

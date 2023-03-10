@@ -83,9 +83,11 @@ public class FatcatServerService {
         return fatcatServerSectorsRepository.findAll();
     }
     public List<Sectors> getSectors(){
-        List<Sectors> tempList = fatcatServerSectorsRepository.findAll();
-        for (Sectors sector : tempList) {
-            sector.setGuards(AES256.decrypt(sector.getGuards()));
+        List<Sectors> tempList = new LinkedList<>();
+
+        for (Sectors sector : fatcatServerSectorsRepository.findAll()) {
+            tempList.add(new Sectors(AES256.decrypt(sector.getGuards())));
+
         }
         return tempList;
     }
@@ -107,4 +109,5 @@ public class FatcatServerService {
 
         return res;
     }
+
 }
