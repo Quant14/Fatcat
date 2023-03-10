@@ -6,6 +6,7 @@ import java.awt.*;
 
 public class Graphics extends JFrame{
     private JPanel panel1;
+    private JButton but;
     double[] xData = new double[] { 0.0, 1.0, 2.0 };
     double[] yData = new double[] { 2.0, 1.0, 0.0 };
 
@@ -23,7 +24,8 @@ public class Graphics extends JFrame{
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setVisible(true);
 
-
+        //but = new JButton("ok");
+        //add(but, BorderLayout.NORTH);
 
         //new SwingWrapper(chart).displayChart();
 
