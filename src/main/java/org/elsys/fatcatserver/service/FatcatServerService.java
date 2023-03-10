@@ -97,4 +97,14 @@ public class FatcatServerService {
     public void deleteAllPersons() {
         fatcatServerPersonRepository.deleteAll();
     }
+
+    public List<Integer> processData(List<Sectors> sectors) {
+        List<Integer> res = new LinkedList<>();
+
+        for(Sectors sector : sectors){
+            res.add(Integer.valueOf(sector.getGuards()));
+        }
+
+        return res;
+    }
 }

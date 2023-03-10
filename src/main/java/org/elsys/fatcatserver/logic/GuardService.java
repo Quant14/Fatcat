@@ -59,7 +59,7 @@ public class GuardService {
             int percentage = Math.round((float) danger_of_sectors.get(i) / total_danger * 100);
             double guards_for_this_sector = number_of_guards * ((float) percentage / 100);
             guards_for_this_sector = Math.round(guards_for_this_sector);
-            String for_database = AES256.encrypt(Double.toString(guards_for_this_sector));
+            String for_database = AES256.encrypt(Integer.toString((int) guards_for_this_sector));
             fatcatServerSectorsRepository.findAll().get(i - 1).setGuards(for_database);
 
         }

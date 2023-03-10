@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.LinkedList;
 import java.util.List;
 
 @RestController
@@ -68,8 +69,13 @@ public class FatcatServerController {
         return guardService.execute();
     }
 
+    @RequestMapping(value = "/processData", method = RequestMethod.GET)
+    public List<Integer> processData(){
+        return fatcatServerService.processData(guardService.execute());
+    }
+
     @RequestMapping(value = "/sectors",method = RequestMethod.GET)
-    public List<Sectors> getSectors(){
+    public List<Sectors> getSectors() {
         return fatcatServerService.getSectors();
     }
 }
