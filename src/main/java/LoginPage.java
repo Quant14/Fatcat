@@ -21,7 +21,7 @@ public class LoginPage extends JFrame{
         setContentPane(panel1);
         setMinimumSize(new Dimension(450,350));
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        catlabel.setIcon(new ImageIcon("/home/qna/Desktop/fatcat128.png"));
+        catlabel.setIcon(new ImageIcon("/home/qna/Desktop/twotone_vpn_key_white_48dp.png"));
         setResizable(false);
 
         setVisible(true);

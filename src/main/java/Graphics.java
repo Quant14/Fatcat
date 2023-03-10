@@ -21,15 +21,19 @@ public class Graphics extends JFrame{
         setContentPane(chartPanel);
         setMinimumSize(new Dimension(450,475));
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+
+        chartPanel.setMaximumSize(new Dimension(400,400));
+        chartPanel.setPreferredSize(new Dimension(400,400));
+        chartPanel.setBackground(new Color(60,35,58));
+        chartPanel.setForeground(new Color(60,35,58));
+        chartPanel.setName("Graphic");
+
         setVisible(true);
-
-
-
         //new SwingWrapper(chart).displayChart();
 
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args)  {
         Graphics graphics= new Graphics();
     }
 }
