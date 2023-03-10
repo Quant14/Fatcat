@@ -12,17 +12,18 @@
     <children>
       <component id="6f62d" class="javax.swing.JLabel">
         <constraints>
-          <grid row="0" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="0" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="2" use-parent-layout="false"/>
         </constraints>
         <properties>
+          <font name="JetBrains Mono" size="14" style="1"/>
           <text value="Name:"/>
         </properties>
       </component>
       <component id="a0daf" class="javax.swing.JTextField" binding="tf1">
         <constraints>
-          <grid row="1" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-            <preferred-size width="300" height="30"/>
-            <maximum-size width="300" height="30"/>
+          <grid row="1" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="9" fill="1" indent="2" use-parent-layout="false">
+            <preferred-size width="452" height="30"/>
+            <maximum-size width="452" height="30"/>
           </grid>
         </constraints>
         <properties>
@@ -31,17 +32,18 @@
       </component>
       <component id="1c4bc" class="javax.swing.JLabel">
         <constraints>
-          <grid row="2" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="2" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="2" use-parent-layout="false"/>
         </constraints>
         <properties>
+          <font name="JetBrains Mono" size="14" style="1"/>
           <text value="Sector:"/>
         </properties>
       </component>
       <component id="f5a6f" class="javax.swing.JTextField" binding="tf2">
         <constraints>
-          <grid row="3" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-            <preferred-size width="150" height="30"/>
-            <maximum-size width="150" height="30"/>
+          <grid row="3" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="2" use-parent-layout="false">
+            <preferred-size width="200" height="30"/>
+            <maximum-size width="200" height="30"/>
           </grid>
         </constraints>
         <properties>
@@ -50,36 +52,41 @@
       </component>
       <component id="6304" class="javax.swing.JLabel">
         <constraints>
-          <grid row="4" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="4" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="2" use-parent-layout="false"/>
         </constraints>
         <properties>
+          <font name="JetBrains Mono" size="14" style="1"/>
           <text value="Description:"/>
         </properties>
       </component>
       <component id="52eb2" class="javax.swing.JLabel">
         <constraints>
-          <grid row="6" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="6" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="2" use-parent-layout="false"/>
         </constraints>
         <properties>
+          <font name="JetBrains Mono" size="14" style="1"/>
           <text value="Danger level (chose 1 to 5):"/>
         </properties>
       </component>
       <component id="d9ad1" class="javax.swing.JTextField" binding="tf4">
         <constraints>
-          <grid row="7" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-            <preferred-size width="150" height="-1"/>
+          <grid row="7" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="2" use-parent-layout="false">
+            <preferred-size width="252" height="30"/>
+            <maximum-size width="252" height="30"/>
           </grid>
         </constraints>
         <properties>
           <background color="-12836038"/>
+          <horizontalAlignment value="10"/>
         </properties>
       </component>
       <component id="19b95" class="javax.swing.JButton" binding="nextButton" default-binding="true">
         <constraints>
-          <grid row="9" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <grid row="9" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="2" use-parent-layout="false"/>
         </constraints>
         <properties>
           <background color="-12836038"/>
+          <font name="JetBrains Mono" size="14" style="1"/>
           <text value="Next"/>
         </properties>
       </component>
@@ -89,17 +96,20 @@
         </constraints>
         <properties>
           <background color="-12836038"/>
+          <font name="JetBrains Mono" size="14" style="1"/>
           <text value="Done"/>
         </properties>
       </component>
       <component id="dfb00" class="javax.swing.JTextArea" binding="ta1">
         <constraints>
-          <grid row="5" column="0" row-span="1" col-span="2" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
-            <preferred-size width="450" height="80"/>
-            <maximum-size width="450" height="80"/>
+          <grid row="5" column="0" row-span="1" col-span="2" vsize-policy="6" hsize-policy="6" anchor="1" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="450" height="100"/>
+            <maximum-size width="450" height="100"/>
           </grid>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-12836038"/>
+        </properties>
       </component>
       <vspacer id="c8425">
         <constraints>
