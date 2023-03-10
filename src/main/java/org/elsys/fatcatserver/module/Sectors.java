@@ -13,6 +13,9 @@ public class Sectors {
     @Column(name="guards")
     private String guards;
 
+    public Sectors() {
+    }
+
     public String getGuards() {
         return guards;
     }

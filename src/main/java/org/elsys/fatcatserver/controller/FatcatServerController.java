@@ -1,6 +1,5 @@
 package org.elsys.fatcatserver.controller;
 
-import org.elsys.encryption.AES256;
 import org.elsys.fatcatserver.module.AdminSettings;
 import org.elsys.fatcatserver.module.Person;
 import org.elsys.fatcatserver.module.Sectors;
@@ -50,13 +49,7 @@ public class FatcatServerController {
     }
 
     @RequestMapping(value = "/sectors", method = RequestMethod.POST)
-    public List<Sectors> createSectors(Sectors sector){
-        String totalsectors = AES256.decrypt(fatcatServerService.getFatcatServerAdminSettingsRepository().getReferenceById(1L).getTotalsectors());
-
-        for(int i = 0; i < Integer.parseInt(totalsectors) - 1; i++) {
-            fatcatServerService.createSectors(sector);
-        }
-
-        return fatcatServerService.createSectors(sector);
+    public List<Sectors> createSectors(){
+        return fatcatServerService.createSectors();
     }
 }

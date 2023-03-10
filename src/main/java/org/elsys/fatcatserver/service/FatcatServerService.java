@@ -25,6 +25,7 @@ public class FatcatServerService {
     FatcatServerSectorsRepository fatcatServerSectorsRepository;
 
     public AdminSettings setAdminSettings(AdminSettings adminSettings){
+        fatcatServerAdminSettingsRepository.deleteAll();
         adminSettings.setTotalguards(AES256.encrypt(adminSettings.getTotalguards()));
         adminSettings.setTotalsectors(AES256.encrypt(adminSettings.getTotalsectors()));
         return fatcatServerAdminSettingsRepository.save(adminSettings);
@@ -70,8 +71,14 @@ public class FatcatServerService {
         fatcatServerPersonRepository.deleteById(personId);
     }
 
-    public List<Sectors> createSectors(Sectors sector){
-        fatcatServerSectorsRepository.save(sector);
+    public List<Sectors> createSectors(){
+        fatcatServerSectorsRepository.deleteAll();
+        String totalsectors = AES256.decrypt(fatcatServerAdminSettingsRepository.findAll().get(0).getTotalsectors());
+
+        for(int i = 0; i < Integer.parseInt(totalsectors); i++) {
+            Sectors newSector = new Sectors();
+            fatcatServerSectorsRepository.save(newSector);
+        }
 
         return fatcatServerSectorsRepository.findAll();
     }
