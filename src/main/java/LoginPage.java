@@ -36,8 +36,11 @@ public class LoginPage extends JFrame{
                     dispose();
                     addPerson person= new addPerson();
                     //vqrno i otvarq nov prozorec
-                }
-                else {
+                } else if (pasword.equals("admin")) {
+                    dispose();
+                    AdminPage admin = new AdminPage();
+
+                } else {
                     JOptionPane.showMessageDialog(LoginPage.this, "Wrong password!",
                             "Error",JOptionPane.ERROR_MESSAGE);
                 }
