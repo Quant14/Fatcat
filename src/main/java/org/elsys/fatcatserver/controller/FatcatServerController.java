@@ -1,6 +1,5 @@
 package org.elsys.fatcatserver.controller;
 
-import org.elsys.encryption.AES256;
 import org.elsys.fatcatserver.logic.GuardService;
 import org.elsys.fatcatserver.module.AdminSettings;
 import org.elsys.fatcatserver.module.Person;
@@ -25,13 +24,19 @@ public class FatcatServerController {
     FatcatServerService fatcatServerService;
 
     @RequestMapping(value = "/admin", method = RequestMethod.POST)
-    public AdminSettings readAdminPanel(@RequestBody AdminSettings adminSettings){
-        return fatcatServerService.setAdminSettings(adminSettings);
+    public List<Sectors> readAdminPanel(@RequestBody AdminSettings adminSettings){
+        fatcatServerService.setAdminSettings(adminSettings);
+        return fatcatServerService.createSectors();
     }
 
     @RequestMapping(value = "/admin", method = RequestMethod.GET)
     public AdminSettings getAdminSettings(){
         return fatcatServerService.getAdminSettings();
+    }
+
+    @RequestMapping(value = "/admin/sectorcnt", method = RequestMethod.POST)
+    public int getSectorCnt(){
+        return fatcatServerService.getSectorCnt();
     }
 
     @RequestMapping(value = "/person/{sectorsid}", method = RequestMethod.GET)
@@ -49,13 +54,13 @@ public class FatcatServerController {
     }
 
     @RequestMapping(value = "/person/{personid}",method = RequestMethod.DELETE)
-    public void delGETetePerson(@PathVariable(value = "personid") Long id){
+    public void deletePerson(@PathVariable(value = "personid") Long id){
         fatcatServerService.deletePerson(id);
     }
 
-    @RequestMapping(value = "/sectors", method = RequestMethod.POST)
-    public List<Sectors> createSectors(){
-        return fatcatServerService.createSectors();
+    @RequestMapping(value = "/person",method = RequestMethod.DELETE)
+    public void deleteAllPersons(){
+        fatcatServerService.deleteAllPersons();
     }
 
     @RequestMapping(value = "/setGuardDistribution", method = RequestMethod.GET)

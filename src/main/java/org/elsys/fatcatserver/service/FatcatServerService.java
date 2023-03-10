@@ -90,5 +90,11 @@ public class FatcatServerService {
         return tempList;
     }
 
+    public int getSectorCnt() {
+        return Integer.parseInt(AES256.decrypt(fatcatServerAdminSettingsRepository.findAll().get(0).getTotalsectors()));
+    }
 
+    public void deleteAllPersons() {
+        fatcatServerPersonRepository.deleteAll();
+    }
 }
