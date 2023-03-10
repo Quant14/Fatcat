@@ -25,7 +25,7 @@ public class addPerson extends JDialog{
         setMinimumSize(new Dimension(550,450));
         setResizable(false);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        iconLabel.setIcon(new ImageIcon("/home/qna/Desktop/twotone_face_white_24dp.png"));
+        iconLabel.setIcon(new ImageIcon("src/main/resources/img/twotone_face_white_24dp.png"));
 
         sectorCnt = Requests.getSectorsCount();
 
