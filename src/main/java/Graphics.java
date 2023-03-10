@@ -29,11 +29,14 @@ public class Graphics extends JFrame{
         chartPanel.setName("Graphic");
 
         setVisible(true);
+
+
+
         //new SwingWrapper(chart).displayChart();
 
     }
 
-    public static void main(String[] args)  {
+    public static void main(String[] args) {
         Graphics graphics= new Graphics();
     }
 }

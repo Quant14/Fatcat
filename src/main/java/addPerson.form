@@ -36,7 +36,7 @@
         </constraints>
         <properties>
           <font name="JetBrains Mono" size="14" style="1"/>
-          <text value="Sector:"/>
+          <text value="Sector number:"/>
         </properties>
       </component>
       <component id="f5a6f" class="javax.swing.JTextField" binding="tf2">
@@ -65,7 +65,7 @@
         </constraints>
         <properties>
           <font name="JetBrains Mono" size="14" style="1"/>
-          <text value="Danger level (chose 1 to 5):"/>
+          <text value="Danger level (choose 1 to 5):"/>
         </properties>
       </component>
       <component id="d9ad1" class="javax.swing.JTextField" binding="tf4">

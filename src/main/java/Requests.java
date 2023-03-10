@@ -1,23 +1,96 @@
+import okhttp3.*;
+import org.w3c.dom.stylesheets.LinkStyle;
+
 import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.net.URI;
-import java.net.URL;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
+import java.util.List;
 
 public class Requests {
     public Requests(){
-//        try{
-//            URL url = new URL("localhost:8080/api/sectors");
-//            HttpURLConnection con = (HttpURLConnection) url.openConnection();
-//            con.setRequestMethod("POST");
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
-        var client = HttpClient.newHttpClient();
+    }
 
-        var request = HttpRequest.newBuilder(URI.create("localhost:8080/api/sectors")).build();
+    public static void setAdminSettings(String totalGuards, String totalSectors){
+        OkHttpClient client = new OkHttpClient().newBuilder().build();
+        MediaType mediaType = MediaType.parse("application/json");
+        RequestBody body = RequestBody
+                .create(mediaType, "{\n    \"totalguards\": \"" + totalGuards + "\",\n    \"totalsectors\": \"" + totalSectors + "\"\n}");
+        Request request = new Request.Builder()
+                .url("http://localhost:8080/api/admin")
+                .method("POST", body)
+                .addHeader("Content-Type", "application/json")
+                .build();
+        try {
+            Response response = client.newCall(request).execute();
+            System.out.println(response.body().string());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
-        //var response = client.send(request, new );
+    public static int getSectorsCount(){
+        OkHttpClient client = new OkHttpClient().newBuilder()
+                .build();
+        MediaType mediaType = MediaType.parse("text/plain");
+        RequestBody body = RequestBody.create(mediaType, "");
+        Request request = new Request.Builder()
+                .url("http://localhost:8080/api/admin/sectorcnt")
+                .method("POST", body)
+                .build();
+        try {
+            Response response = client.newCall(request).execute();
+
+            return Integer.parseInt(response.body().string());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static void addPersonRequest(String name, String sector, String description, String danger){
+        OkHttpClient client = new OkHttpClient().newBuilder().build();
+        MediaType mediaType = MediaType.parse("application/json");
+        RequestBody body = RequestBody
+                .create(mediaType, "{\n    \"name\": \"" + name + "\",\n    \"sector\": \"" + sector + "\",\n    \"description\": \"" + description + "\",\n    \"danger\": \"" + danger + "\"\n}");
+        Request request = new Request.Builder()
+                .url("http://localhost:8080/api/person")
+                .method("POST", body)
+                .addHeader("Content-Type", "application/json")
+                .build();
+        try {
+            Response response = client.newCall(request).execute();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static void deleteAllPersons(){
+        OkHttpClient client = new OkHttpClient().newBuilder()
+                .build();
+        MediaType mediaType = MediaType.parse("text/plain");
+        RequestBody body = RequestBody.create(mediaType, "");
+        Request request = new Request.Builder()
+                .url("http://localhost:8080/api/person")
+                .method("DELETE", body)
+                .build();
+        try {
+            Response response = client.newCall(request).execute();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static List<Integer> processData(){
+        OkHttpClient client = new OkHttpClient().newBuilder()
+                .build();
+        MediaType mediaType = MediaType.parse("text/plain");
+        RequestBody body = RequestBody.create(mediaType, "");
+        Request request = new Request.Builder()
+                .url("localhost:8080/api/processData")
+                .method("GET", body)
+                .build();
+        try {
+            Response response = client.newCall(request).execute();
+            return response.body().string();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

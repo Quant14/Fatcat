@@ -7,8 +7,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class addPerson extends JDialog{
-
-    private Person person=new Person();
     private JPanel panel1;
     private JTextField tf1;
     private JTextField tf2;
@@ -18,6 +16,7 @@ public class addPerson extends JDialog{
     private JButton doneButton;
     private JTextArea ta1;
     private JLabel iconLabel;
+    private int sectorCnt;
 
     public addPerson()
     {
@@ -27,6 +26,8 @@ public class addPerson extends JDialog{
         setResizable(false);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         iconLabel.setIcon(new ImageIcon("/home/qna/Desktop/twotone_face_white_24dp.png"));
+
+        sectorCnt = Requests.getSectorsCount();
 
         setVisible(true);
 
@@ -41,19 +42,22 @@ public class addPerson extends JDialog{
                 } else
                 {
                     int s= Integer.parseInt(tf4.getText());
-                    if(s>0 & s<=5)
+                    if(s>0 && s<=5)
                     {
-                        person.name=tf1.getText();
-                        person.sector=tf2.getText();
-                        person.description=ta1.getText();
-                        person.danger=tf4.getText();
-                        //pra6ta zaqvka i posle nulira poletata
-                        JOptionPane.showMessageDialog(addPerson.this, "Person added!",
-                                "Added", JOptionPane.INFORMATION_MESSAGE);
-                        tf1.setText("");
-                        tf2.setText("");
-                        ta1.setText("");
-                        tf4.setText("");
+                        int sec= Integer.parseInt(tf2.getText());
+                        if(sec <= sectorCnt && sec > 0){
+                            Requests.addPersonRequest(tf1.getText(), tf2.getText(), ta1.getText(), tf4.getText());
+                            JOptionPane.showMessageDialog(addPerson.this, "Person added!",
+                                    "Added", JOptionPane.INFORMATION_MESSAGE);
+                            tf1.setText("");
+                            tf2.setText("");
+                            ta1.setText("");
+                            tf4.setText("");
+                        }else {
+                            JOptionPane.showMessageDialog(addPerson.this, "Sector is invalid!",
+                                    "Error", JOptionPane.ERROR_MESSAGE);
+                        }
+
                     }else
                     {
                         JOptionPane.showMessageDialog(addPerson.this, "Danger level is invalid!",

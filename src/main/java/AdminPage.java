@@ -3,13 +3,15 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import static java.lang.System.exit;
+
 public class AdminPage extends JFrame{
-    private AdminSettings stadium = new AdminSettings();
     private JPanel panel1;
     private JPanel adminPanel;
     private JButton OKButton;
     private JTextField tf1;
     private JTextField tf2;
+    private JButton delete;
 
     public AdminPage()
     {
@@ -27,13 +29,22 @@ public class AdminPage extends JFrame{
                     JOptionPane.showMessageDialog(AdminPage.this,"You need to fill all the boxes",
                             "Problem", JOptionPane.ERROR_MESSAGE);
                 }else {
-                    stadium.sectors=tf1.getText();
-                    stadium.guards=tf2.getText();
+                    Requests.setAdminSettings(tf2.getText(), tf1.getText());
+
                     JOptionPane.showMessageDialog(AdminPage.this, "All done!", "done",
                             JOptionPane.INFORMATION_MESSAGE);
                     dispose();
                 }
-                
+            }
+        });
+        delete.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Requests.deleteAllPersons();
+                JOptionPane.showMessageDialog(AdminPage.this, "All people have been deleted!", "done",
+                        JOptionPane.INFORMATION_MESSAGE);
+                dispose();
+                exit(1);
             }
         });
     }
