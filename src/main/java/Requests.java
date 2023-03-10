@@ -2,7 +2,9 @@ import okhttp3.*;
 import org.w3c.dom.stylesheets.LinkStyle;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Requests {
     public Requests(){
@@ -30,10 +32,8 @@ public class Requests {
         OkHttpClient client = new OkHttpClient().newBuilder()
                 .build();
         MediaType mediaType = MediaType.parse("text/plain");
-        RequestBody body = RequestBody.create(mediaType, "");
         Request request = new Request.Builder()
                 .url("http://localhost:8080/api/admin/sectorcnt")
-                .method("POST", body)
                 .build();
         try {
             Response response = client.newCall(request).execute();
@@ -77,18 +77,19 @@ public class Requests {
         }
     }
 
-    public static List<Integer> processData(){
+    public static List<Integer> processData() {
         OkHttpClient client = new OkHttpClient().newBuilder()
                 .build();
-        MediaType mediaType = MediaType.parse("text/plain");
-        RequestBody body = RequestBody.create(mediaType, "");
         Request request = new Request.Builder()
-                .url("localhost:8080/api/processData")
-                .method("GET", body)
+                .url("http://localhost:8080/api/processData")
                 .build();
         try {
             Response response = client.newCall(request).execute();
-            return response.body().string();
+            var stringBody = response.body().string();
+
+            return Arrays.stream(stringBody.substring(1, stringBody.length() - 1).split(","))
+                    .map(Integer::parseInt)
+                    .collect(Collectors.toList());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

@@ -1,16 +1,20 @@
-//import org.knowm.xchart.XYChart;
 import org.knowm.xchart.*;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Graphics extends JFrame{
     private JPanel panel1;
-    double[] xData = new double[] { 0.0, 1.0, 2.0 };
-    double[] yData = new double[] { 2.0, 1.0, 0.0 };
+    ArrayList<Integer> xData = new ArrayList<>();
+    ArrayList<Integer> yData = new ArrayList<>();
+
+    List<Integer> chartArray;
 
     public Graphics ()
     {
+        chartArray = Requests.processData();
         // Create Chart
         XYChart chart = QuickChart.getChart("Sample Chart", "X", "Y", "y(x)", xData, yData);
 
