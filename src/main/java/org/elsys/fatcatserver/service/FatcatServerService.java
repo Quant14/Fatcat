@@ -57,16 +57,16 @@ public class FatcatServerService {
     }
 
     public List<Person> getPerson() {
-        List<Person> tempList = fatcatServerPersonRepository.findAll();
-        for (Person person : tempList) {
-            person.setName(AES256.decrypt(person.getName()));
-            person.setSector(AES256.decrypt(person.getSector()));
-            person.setDescription(AES256.decrypt(person.getDescription()));
-            person.setDanger(AES256.decrypt(person.getDanger()));
+        List<Person> tempList = new LinkedList<>();
+
+        for (Person person : fatcatServerPersonRepository.findAll()) {
+            tempList.add(new Person(AES256.decrypt(person.getName()),
+                    AES256.decrypt(person.getSector()),
+                    AES256.decrypt(person.getDescription()),
+                    AES256.decrypt(person.getDanger())));
         }
         return tempList;
     }
-
     public void deletePerson(Long personId) {
         fatcatServerPersonRepository.deleteById(personId);
     }

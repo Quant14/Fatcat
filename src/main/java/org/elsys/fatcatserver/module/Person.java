@@ -22,6 +22,15 @@ public class Person {
     @Column(name="danger")
     private String danger;
 
+    public Person() {
+    }
+
+    public Person(String name, String sector, String description, String danger) {
+        this.name = name;
+        this.sector = sector;
+        this.description = description;
+        this.danger = danger;
+    }
     public String getName() {
         return name;
     }
