@@ -9,7 +9,9 @@ import org.elsys.fatcatserver.repository.FatcatServerPersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class FatcatServerService {
@@ -25,6 +27,15 @@ public class FatcatServerService {
         return fatcatServerGuardsRepository.save(adminSettings);
     }
 
+    public List<Person> getPersonsInSector(Long sectorsId){
+        List<Person> res = new LinkedList<>();
+
+        getPerson().stream()
+                .filter(curr -> Objects.equals(curr.getSector(), Long.toString(sectorsId)))
+                .forEach(res::add);
+        return res;
+    }
+
     public Person createPerson(Person person) {
         person.setName(AES256.encrypt(person.getName()));
         person.setSector(AES256.encrypt(person.getSector()));
@@ -35,11 +46,11 @@ public class FatcatServerService {
 
     public List<Person> getPerson() {
         List<Person> tempList = fatcatServerPersonRepository.findAll();
-        for(int i = 0; i < tempList.size(); i++) {
-            tempList.get(i).setName(AES256.decrypt(tempList.get(i).getName()));
-            tempList.get(i).setSector(AES256.decrypt(tempList.get(i).getSector()));
-            tempList.get(i).setDescription(AES256.decrypt(tempList.get(i).getDescription()));
-            tempList.get(i).setDanger(AES256.decrypt(tempList.get(i).getDanger()));
+        for (Person person : tempList) {
+            person.setName(AES256.decrypt(person.getName()));
+            person.setSector(AES256.decrypt(person.getSector()));
+            person.setDescription(AES256.decrypt(person.getDescription()));
+            person.setDanger(AES256.decrypt(person.getDanger()));
         }
         return tempList;
     }
