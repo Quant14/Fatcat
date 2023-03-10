@@ -3,6 +3,7 @@ package org.elsys.fatcatserver.service;
 import org.elsys.encryption.AES256;
 import org.elsys.fatcatserver.module.AdminSettings;
 import org.elsys.fatcatserver.module.Person;
+import org.elsys.fatcatserver.module.Sectors;
 import org.elsys.fatcatserver.repository.FatcatServerAdminSettingsRepository;
 import org.elsys.fatcatserver.repository.FatcatServerSectorsRepository;
 import org.elsys.fatcatserver.repository.FatcatServerPersonRepository;
@@ -18,14 +19,21 @@ public class FatcatServerService {
 
     @Autowired
     FatcatServerPersonRepository fatcatServerPersonRepository;
-    FatcatServerAdminSettingsRepository fatcatServerGuardsRepository;
+    @Autowired
+    FatcatServerAdminSettingsRepository fatcatServerAdminSettingsRepository;
+    @Autowired
     FatcatServerSectorsRepository fatcatServerSectorsRepository;
 
     public AdminSettings setAdminSettings(AdminSettings adminSettings){
         adminSettings.setTotalguards(AES256.encrypt(adminSettings.getTotalguards()));
-        adminSettings.setTotalguards(AES256.encrypt(adminSettings.getTotalguards()));
-        return fatcatServerGuardsRepository.save(adminSettings);
+        adminSettings.setTotalsectors(AES256.encrypt(adminSettings.getTotalsectors()));
+        return fatcatServerAdminSettingsRepository.save(adminSettings);
     }
+
+    /*@JsonIgnoreProperties({"hibernateLazyInitializer"})
+    public AdminSettings getAdminSettings(){
+        return fatcatServerAdminSettingsRepository.getReferenceById(1L);
+    }*/
 
     public List<Person> getPersonsInSector(Long sectorsId){
         List<Person> res = new LinkedList<>();
@@ -59,7 +67,17 @@ public class FatcatServerService {
         fatcatServerPersonRepository.deleteById(personId);
     }
 
+    public List<Sectors> createSectors(Sectors sector){
+        fatcatServerSectorsRepository.save(sector);
+
+        return fatcatServerSectorsRepository.findAll();
+    }
+
     /*public LinkedList<String> setSectors(LinkedList<String> sectors){
         return processData.setSectors(sectors);
     }*/
+
+    public FatcatServerAdminSettingsRepository getFatcatServerAdminSettingsRepository() {
+        return fatcatServerAdminSettingsRepository;
+    }
 }

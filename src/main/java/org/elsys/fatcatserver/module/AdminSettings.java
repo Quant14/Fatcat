@@ -23,6 +23,14 @@ public class AdminSettings {
     public void setTotalguards(String totalguards) {
         this.totalguards = totalguards;
     }
+
+    public String getTotalsectors() {
+        return totalsectors;
+    }
+
+    public void setTotalsectors(String totalsectors) {
+        this.totalsectors = totalsectors;
+    }
 }
 
 

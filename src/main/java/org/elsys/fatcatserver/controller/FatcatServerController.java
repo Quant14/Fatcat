@@ -1,7 +1,9 @@
 package org.elsys.fatcatserver.controller;
 
+import org.elsys.encryption.AES256;
 import org.elsys.fatcatserver.module.AdminSettings;
 import org.elsys.fatcatserver.module.Person;
+import org.elsys.fatcatserver.module.Sectors;
 import org.elsys.fatcatserver.service.FatcatServerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,6 +25,11 @@ public class FatcatServerController {
         return fatcatServerService.setAdminSettings(adminSettings);
     }
 
+    /*@RequestMapping(value = "/admin", method = RequestMethod.GET)
+    public AdminSettings getAdminSettings(){
+        return fatcatServerService.getAdminSettings();
+    }*/
+
     @RequestMapping(value = "/person/{sectorsid}", method = RequestMethod.GET)
     public List<Person> getPersonsInSector(@PathVariable(value = "sectorsid") Long sectorsId){
         return fatcatServerService.getPersonsInSector(sectorsId);
@@ -40,6 +47,17 @@ public class FatcatServerController {
     @RequestMapping(value = "/person/{personid}",method = RequestMethod.DELETE)
     public void delGETetePerson(@PathVariable(value = "personid") Long id){
         fatcatServerService.deletePerson(id);
+    }
+
+    @RequestMapping(value = "/sectors", method = RequestMethod.POST)
+    public List<Sectors> createSectors(Sectors sector){
+        String totalsectors = AES256.decrypt(fatcatServerService.getFatcatServerAdminSettingsRepository().getReferenceById(1L).getTotalsectors());
+
+        for(int i = 0; i < Integer.parseInt(totalsectors) - 1; i++) {
+            fatcatServerService.createSectors(sector);
+        }
+
+        return fatcatServerService.createSectors(sector);
     }
 
     /*@RequestMapping(value = "/sectors", method = RequestMethod.POST)
