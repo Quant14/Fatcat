@@ -30,10 +30,13 @@ public class FatcatServerService {
         return fatcatServerAdminSettingsRepository.save(adminSettings);
     }
 
-    /*@JsonIgnoreProperties({"hibernateLazyInitializer"})
     public AdminSettings getAdminSettings(){
-        return fatcatServerAdminSettingsRepository.getReferenceById(1L);
-    }*/
+        AdminSettings res = fatcatServerAdminSettingsRepository.findAll().get(0);
+        res.setTotalguards(AES256.decrypt(res.getTotalguards()));
+        res.setTotalsectors(AES256.decrypt(res.getTotalsectors()));
+
+        return res;
+    }
 
     public List<Person> getPersonsInSector(Long sectorsId){
         List<Person> res = new LinkedList<>();
@@ -72,10 +75,6 @@ public class FatcatServerService {
 
         return fatcatServerSectorsRepository.findAll();
     }
-
-    /*public LinkedList<String> setSectors(LinkedList<String> sectors){
-        return processData.setSectors(sectors);
-    }*/
 
     public FatcatServerAdminSettingsRepository getFatcatServerAdminSettingsRepository() {
         return fatcatServerAdminSettingsRepository;

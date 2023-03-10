@@ -25,10 +25,10 @@ public class FatcatServerController {
         return fatcatServerService.setAdminSettings(adminSettings);
     }
 
-    /*@RequestMapping(value = "/admin", method = RequestMethod.GET)
+    @RequestMapping(value = "/admin", method = RequestMethod.GET)
     public AdminSettings getAdminSettings(){
         return fatcatServerService.getAdminSettings();
-    }*/
+    }
 
     @RequestMapping(value = "/person/{sectorsid}", method = RequestMethod.GET)
     public List<Person> getPersonsInSector(@PathVariable(value = "sectorsid") Long sectorsId){
@@ -59,7 +59,4 @@ public class FatcatServerController {
 
         return fatcatServerService.createSectors(sector);
     }
-
-    /*@RequestMapping(value = "/sectors", method = RequestMethod.POST)
-    public LinkedList<String> readSectors(@RequestBody LinkedList<String> sectors){ return fatcatServerService.setSectors(sectors); }*/
 }
