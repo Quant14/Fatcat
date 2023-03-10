@@ -1,5 +1,6 @@
 package org.elsys.fatcatserver.logic;
 
+import org.elsys.fatcatserver.module.Person;
 import org.elsys.fatcatserver.module.Sectors;
 import org.elsys.fatcatserver.repository.FatcatServerAdminSettingsRepository;
 import org.elsys.fatcatserver.repository.FatcatServerSectorsRepository;
@@ -39,19 +40,22 @@ public class GuardService {
     }
 
     public void setup_map() {
+        List<Person> persons = server_service.getPerson();
         danger_of_sectors = new HashMap<>();
         for (int i = 1; i <= number_of_sectors; i++) {
             Long sector_id = Long.valueOf(i);
-            sectorDangerCalculater.setSectorPeople(server_service.getPersonsInSector(sector_id));
+            sectorDangerCalculater.setSectorPeople(server_service.getPersonsInSector(sector_id, persons));
             danger_of_sectors.put(i, sectorDangerCalculater.SectorDangerCalculation());
 
         }
     }
 
     public void total_danger_calculation() {
+        int curr_total_danger = 0;
         for (int i = 1; i <= danger_of_sectors.size(); i++) {
-            total_danger += danger_of_sectors.get(i);
+            curr_total_danger += danger_of_sectors.get(i);
         }
+        total_danger = curr_total_danger;
     }
 
     public void allocate_guards() {

@@ -40,10 +40,10 @@ public class FatcatServerService {
         return res;
     }
 
-    public List<Person> getPersonsInSector(Long sectorsId){
+    public List<Person> getPersonsInSector(Long sectorsId, List<Person> persons){
         List<Person> res = new LinkedList<>();
 
-        getPerson().stream()
+        persons.stream()
                 .filter(curr -> Objects.equals(curr.getSector(), Long.toString(sectorsId)))
                 .forEach(res::add);
         return res;

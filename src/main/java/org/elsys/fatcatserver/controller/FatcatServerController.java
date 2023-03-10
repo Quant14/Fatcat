@@ -40,11 +40,6 @@ public class FatcatServerController {
         return fatcatServerService.getSectorCnt();
     }
 
-    @RequestMapping(value = "/person/{sectorsid}", method = RequestMethod.GET)
-    public List<Person> getPersonsInSector(@PathVariable(value = "sectorsid") Long sectorsId){
-        return fatcatServerService.getPersonsInSector(sectorsId);
-    }
-
     @RequestMapping(value = "/person",method = RequestMethod.POST)
     public Person createPerson(@RequestBody Person person) {
         return fatcatServerService.createPerson(person);
