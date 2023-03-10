@@ -1,3 +1,6 @@
+import mdlaf.MaterialLookAndFeel;
+import mdlaf.themes.JMarsDarkTheme;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -9,41 +12,54 @@ public class addPerson extends JDialog{
     private JPanel panel1;
     private JTextField tf1;
     private JTextField tf2;
-    private JTextField tf3;
+
     private JTextField tf4;
     private JButton nextButton;
     private JButton doneButton;
+    private JTextArea ta1;
 
     public addPerson()
     {
         setTitle("Add person");
         setContentPane(panel1);
-        setMinimumSize(new Dimension(450,475));
+        setMinimumSize(new Dimension(450,450));
+        setResizable(false);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+
         setVisible(true);
-        person.name=tf1.getText();
-        person.sector=tf2.getText();
-        person.description=tf3.getText();
-        person.danger=tf4.getText();
 
         nextButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                person.name=tf1.getText();
+                person.sector=tf2.getText();
+                person.description=ta1.getText();
+                person.danger=tf4.getText();
+                //pra6ta zaqvka i posle nulira poletata
+                JOptionPane.showMessageDialog(addPerson.this, "Person added!",
+                        "Added", JOptionPane.INFORMATION_MESSAGE);
                 tf1.setText("");
                 tf2.setText("");
-                tf3.setText("");
+                ta1.setText("");
                 tf4.setText("");
             }
         });
         doneButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                dispose();
+                Graphics graphics= new Graphics();
                 //otvarq nov prozorec
             }
         });
     }
 
     public static void main(String[] args) {
+        try {
+            UIManager.setLookAndFeel(new MaterialLookAndFeel(new JMarsDarkTheme()));
+        } catch (UnsupportedLookAndFeelException e) {
+            throw new RuntimeException(e);
+        }
         addPerson add= new addPerson();
     }
 }

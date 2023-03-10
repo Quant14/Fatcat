@@ -13,26 +13,31 @@ public class LoginPage extends JFrame{
     private JPasswordField pas;
     private JButton btn;
     private JLabel catlabel;
+    private JLabel guard;
 
     public LoginPage ()
     {
         setTitle("Login");
         setContentPane(panel1);
-        setMinimumSize(new Dimension(450,475));
+        setMinimumSize(new Dimension(450,350));
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         catlabel.setIcon(new ImageIcon("/home/qna/Desktop/fatcat128.png"));
+        setResizable(false);
+
         setVisible(true);
-        //String pasword= Arrays.toString(pas.getPassword());
 
         btn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String pasword= pas.getText();
-                System.out.println(pasword);
+                //System.out.println(pasword);
                 if(pasword.equals("yana"))
                 {
+                    dispose();
+                    addPerson person= new addPerson();
                     //vqrno i otvarq nov prozorec
-                }else {
+                }
+                else {
                     JOptionPane.showMessageDialog(LoginPage.this, "Wrong password!",
                             "Error",JOptionPane.ERROR_MESSAGE);
                 }
