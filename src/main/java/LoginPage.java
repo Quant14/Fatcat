@@ -1,10 +1,14 @@
+import mdlaf.MaterialLookAndFeel;
+import mdlaf.themes.JMarsDarkTheme;
+import mdlaf.themes.MaterialLiteTheme;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Arrays;
 
-public class LoginPage extends JDialog{
+public class LoginPage extends JFrame{
     private JPanel panel1;
     private JPasswordField pas;
     private JButton btn;
@@ -37,6 +41,11 @@ public class LoginPage extends JDialog{
     }
 
     public static void main(String[] args) {
+        try {
+            UIManager.setLookAndFeel(new MaterialLookAndFeel(new JMarsDarkTheme()));
+        } catch (UnsupportedLookAndFeelException e) {
+            throw new RuntimeException(e);
+        }
         LoginPage log = new LoginPage();
     }
 }
