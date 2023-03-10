@@ -10,6 +10,7 @@ import org.elsys.fatcatserver.repository.FatcatServerPersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
@@ -99,7 +100,7 @@ public class FatcatServerService {
     }
 
     public List<Integer> processData(List<Sectors> sectors) {
-        List<Integer> res = new LinkedList<>();
+        List<Integer> res = new ArrayList<>();
 
         for(Sectors sector : sectors){
             res.add(Integer.valueOf(sector.getGuards()));
