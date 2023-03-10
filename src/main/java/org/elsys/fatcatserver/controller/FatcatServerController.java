@@ -1,5 +1,7 @@
 package org.elsys.fatcatserver.controller;
 
+import org.elsys.encryption.AES256;
+import org.elsys.fatcatserver.logic.GuardService;
 import org.elsys.fatcatserver.module.AdminSettings;
 import org.elsys.fatcatserver.module.Person;
 import org.elsys.fatcatserver.module.Sectors;
@@ -16,6 +18,9 @@ import java.util.List;
 @RestController
 @RequestMapping("/api")
 public class FatcatServerController {
+    @Autowired
+    GuardService guardService;
+
     @Autowired
     FatcatServerService fatcatServerService;
 
@@ -51,5 +56,15 @@ public class FatcatServerController {
     @RequestMapping(value = "/sectors", method = RequestMethod.POST)
     public List<Sectors> createSectors(){
         return fatcatServerService.createSectors();
+    }
+
+    @RequestMapping(value = "/setGuardDistribution", method = RequestMethod.GET)
+    public List<Sectors> DistributeGuards(){
+        return guardService.execute();
+    }
+
+    @RequestMapping(value = "/sectors",method = RequestMethod.GET)
+    public List<Sectors> getSectors(){
+        return fatcatServerService.getSectors();
     }
 }
