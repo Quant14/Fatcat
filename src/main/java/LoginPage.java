@@ -16,7 +16,7 @@ public class LoginPage extends JDialog{
         setContentPane(panel1);
         setMinimumSize(new Dimension(450,475));
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        catlabel.setIcon(new ImageIcon("/home/qna/Desktop/fatcat64.png"));
+        catlabel.setIcon(new ImageIcon("/home/qna/Desktop/fatcat128.png"));
         setVisible(true);
         //String pasword= Arrays.toString(pas.getPassword());
 
