@@ -1,4 +1,5 @@
 package org.elsys.encryption;
+
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
 import javax.crypto.SecretKeyFactory;
@@ -9,7 +10,7 @@ import java.nio.charset.StandardCharsets;
 import java.security.spec.KeySpec;
 import java.util.Base64;
 
-public class AES256{
+public class AES256 {
     private static final String SECRET_KEY = "secret_key_password_thing";
     private static final String IV = "some long iv";
 
@@ -31,6 +32,7 @@ public class AES256{
         }
         return null;
     }
+
     public static String decrypt(String strToDecrypt) {
         try {
             byte[] iv = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};

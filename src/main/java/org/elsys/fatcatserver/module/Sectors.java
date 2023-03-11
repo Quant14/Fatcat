@@ -7,17 +7,17 @@ import jakarta.persistence.*;
 public class Sectors {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id")
+    @Column(name = "id")
     private Long id;
 
-    @Column(name="guards")
+    @Column(name = "guards")
     private String guards;
 
     public Sectors() {
     }
 
-    public Sectors(String guards){
-        this.guards=guards;
+    public Sectors(String guards) {
+        this.guards = guards;
     }
 
     public String getGuards() {

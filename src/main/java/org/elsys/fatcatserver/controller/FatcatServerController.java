@@ -25,52 +25,53 @@ public class FatcatServerController {
     FatcatServerService fatcatServerService;
 
     @RequestMapping(value = "/admin", method = RequestMethod.POST)
-    public List<Sectors> readAdminPanel(@RequestBody AdminSettings adminSettings){
+    public List<Sectors> readAdminPanel(@RequestBody AdminSettings adminSettings) {
         fatcatServerService.setAdminSettings(adminSettings);
         return fatcatServerService.createSectors();
     }
 
     @RequestMapping(value = "/admin", method = RequestMethod.GET)
-    public AdminSettings getAdminSettings(){
+    public AdminSettings getAdminSettings() {
         return fatcatServerService.getAdminSettings();
     }
 
     @RequestMapping(value = "/admin/sectorcnt", method = RequestMethod.GET)
-    public int getSectorCnt(){
+    public int getSectorCnt() {
         return fatcatServerService.getSectorCnt();
     }
 
-    @RequestMapping(value = "/person",method = RequestMethod.POST)
+    @RequestMapping(value = "/person", method = RequestMethod.POST)
     public Person createPerson(@RequestBody Person person) {
         return fatcatServerService.createPerson(person);
     }
-    @RequestMapping(value = "/person",method = RequestMethod.GET)
-    public List<Person> readPerson(){
+
+    @RequestMapping(value = "/person", method = RequestMethod.GET)
+    public List<Person> readPerson() {
         return fatcatServerService.getPerson();
     }
 
-    @RequestMapping(value = "/person/{personid}",method = RequestMethod.DELETE)
-    public void deletePerson(@PathVariable(value = "personid") Long id){
+    @RequestMapping(value = "/person/{personid}", method = RequestMethod.DELETE)
+    public void deletePerson(@PathVariable(value = "personid") Long id) {
         fatcatServerService.deletePerson(id);
     }
 
-    @RequestMapping(value = "/person",method = RequestMethod.DELETE)
-    public void deleteAllPersons(){
+    @RequestMapping(value = "/person", method = RequestMethod.DELETE)
+    public void deleteAllPersons() {
         fatcatServerService.deleteAllPersons();
     }
 
     @RequestMapping(value = "/setGuardDistribution", method = RequestMethod.GET)
-    public List<Sectors> DistributeGuards(){
+    public List<Sectors> DistributeGuards() {
         return guardService.execute();
     }
 
     @RequestMapping(value = "/processData", method = RequestMethod.GET)
-    public List<Integer> processData(){
+    public List<Integer> processData() {
         List<Sectors> arr = guardService.execute();
         return fatcatServerService.processData(arr);
     }
 
-    @RequestMapping(value = "/sectors",method = RequestMethod.GET)
+    @RequestMapping(value = "/sectors", method = RequestMethod.GET)
     public List<Sectors> getSectors() {
         return fatcatServerService.getSectors();
     }

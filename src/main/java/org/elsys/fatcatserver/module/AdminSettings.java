@@ -7,13 +7,13 @@ import jakarta.persistence.*;
 public class AdminSettings {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id")
+    @Column(name = "id")
     private Long id;
 
-    @Column(name="totalguards")
+    @Column(name = "totalguards")
     private String totalguards;
 
-    @Column(name="totalsectors")
+    @Column(name = "totalsectors")
     private String totalsectors;
 
     public String getTotalguards() {

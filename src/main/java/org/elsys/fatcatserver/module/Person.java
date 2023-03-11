@@ -7,19 +7,19 @@ import jakarta.persistence.*;
 public class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id")
+    @Column(name = "id")
     private Long id;
 
-    @Column(name="name")
+    @Column(name = "name")
     private String name;
 
-    @Column(name="sector")
+    @Column(name = "sector")
     private String sector;
 
-    @Column(name="description")
+    @Column(name = "description")
     private String description;
 
-    @Column(name="danger")
+    @Column(name = "danger")
     private String danger;
 
     public Person() {
@@ -31,6 +31,7 @@ public class Person {
         this.description = description;
         this.danger = danger;
     }
+
     public String getName() {
         return name;
     }

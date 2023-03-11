@@ -25,14 +25,14 @@ public class FatcatServerService {
     @Autowired
     FatcatServerSectorsRepository fatcatServerSectorsRepository;
 
-    public AdminSettings setAdminSettings(AdminSettings adminSettings){
+    public AdminSettings setAdminSettings(AdminSettings adminSettings) {
         fatcatServerAdminSettingsRepository.deleteAll();
         adminSettings.setTotalguards(AES256.encrypt(adminSettings.getTotalguards()));
         adminSettings.setTotalsectors(AES256.encrypt(adminSettings.getTotalsectors()));
         return fatcatServerAdminSettingsRepository.save(adminSettings);
     }
 
-    public AdminSettings getAdminSettings(){
+    public AdminSettings getAdminSettings() {
         AdminSettings res = fatcatServerAdminSettingsRepository.findAll().get(0);
         res.setTotalguards(AES256.decrypt(res.getTotalguards()));
         res.setTotalsectors(AES256.decrypt(res.getTotalsectors()));
@@ -40,7 +40,7 @@ public class FatcatServerService {
         return res;
     }
 
-    public List<Person> getPersonsInSector(Long sectorsId, List<Person> persons){
+    public List<Person> getPersonsInSector(Long sectorsId, List<Person> persons) {
         List<Person> res = new LinkedList<>();
 
         persons.stream()
@@ -68,22 +68,24 @@ public class FatcatServerService {
         }
         return tempList;
     }
+
     public void deletePerson(Long personId) {
         fatcatServerPersonRepository.deleteById(personId);
     }
 
-    public List<Sectors> createSectors(){
+    public List<Sectors> createSectors() {
         fatcatServerSectorsRepository.deleteAll();
         String totalsectors = AES256.decrypt(fatcatServerAdminSettingsRepository.findAll().get(0).getTotalsectors());
 
-        for(int i = 0; i < Integer.parseInt(totalsectors); i++) {
+        for (int i = 0; i < Integer.parseInt(totalsectors); i++) {
             Sectors newSector = new Sectors();
             fatcatServerSectorsRepository.save(newSector);
         }
 
         return fatcatServerSectorsRepository.findAll();
     }
-    public List<Sectors> getSectors(){
+
+    public List<Sectors> getSectors() {
         List<Sectors> tempList = new LinkedList<>();
 
         for (Sectors sector : fatcatServerSectorsRepository.findAll()) {
@@ -104,7 +106,7 @@ public class FatcatServerService {
     public List<Integer> processData(List<Sectors> sectors) {
         List<Integer> res = new ArrayList<>();
 
-        for(Sectors sector : sectors){
+        for (Sectors sector : sectors) {
             res.add(Integer.valueOf(sector.getGuards()));
         }
 

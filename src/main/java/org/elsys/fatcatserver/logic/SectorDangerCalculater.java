@@ -13,10 +13,9 @@ public class SectorDangerCalculater {
 
     List<Person> SectorPeople;
 
-    int SectorDangerCalculation(){
+    int SectorDangerCalculation() {
         int DangerLevel = 0;
-        for (int i = 0;i<SectorPeople.size();i++)
-        {
+        for (int i = 0; i < SectorPeople.size(); i++) {
             DangerLevel += Integer.parseInt(SectorPeople.get(i).getDanger());
 
         }
