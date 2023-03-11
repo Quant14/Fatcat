@@ -45,6 +45,7 @@ public class LoginPage extends JFrame {
 
     public static void main(String[] args) {
         try {
+            new Requests();
             UIManager.setLookAndFeel(new MaterialLookAndFeel(new JMarsDarkTheme()));
         } catch (UnsupportedLookAndFeelException e) {
             throw new RuntimeException(e);
