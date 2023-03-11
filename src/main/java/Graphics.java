@@ -24,7 +24,7 @@ public class Graphics extends JFrame {
         JPanel chartPanel = new XChartPanel<XYChart>(chart);
         add(chartPanel, BorderLayout.CENTER);
 
-        setTitle("Graphics");
+        setTitle("Guards per sector");
         setContentPane(chartPanel);
         setMinimumSize(new Dimension(600, 450));
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
