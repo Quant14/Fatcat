@@ -1,6 +1,6 @@
 package org.elsys.fatcatserver.service;
 
-import org.elsys.encryption.AES256;
+import org.elsys.fatcatserver.encryption.AES256;
 import org.elsys.fatcatserver.module.AdminSettings;
 import org.elsys.fatcatserver.module.Person;
 import org.elsys.fatcatserver.module.Sectors;
@@ -17,7 +17,8 @@ import java.util.Objects;
 
 @Service
 public class FatcatServerService {
-
+    @Autowired
+    AES256 AES256;
     @Autowired
     FatcatServerPersonRepository fatcatServerPersonRepository;
     @Autowired

@@ -7,7 +7,7 @@ import org.elsys.fatcatserver.repository.FatcatServerSectorsRepository;
 import org.elsys.fatcatserver.service.FatcatServerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.elsys.encryption.AES256;
+import org.elsys.fatcatserver.encryption.AES256;
 
 import java.util.HashMap;
 import java.util.List;
@@ -16,6 +16,9 @@ import java.util.Map;
 
 @Service
 public class GuardService {
+    @Autowired
+    AES256 AES256;
+
     @Autowired
     FatcatServerAdminSettingsRepository fatcatServerAdminSettingsRepository;
     @Autowired
@@ -43,7 +46,7 @@ public class GuardService {
         List<Person> persons = server_service.getPerson();
         danger_of_sectors = new HashMap<>();
         for (int i = 1; i <= number_of_sectors; i++) {
-            Long sector_id = Long.valueOf(i);
+            Long sector_id = (long) i;
             sectorDangerCalculater.setSectorPeople(server_service.getPersonsInSector(sector_id, persons));
             danger_of_sectors.put(i, sectorDangerCalculater.SectorDangerCalculation());
 

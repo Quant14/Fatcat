@@ -1,6 +1,7 @@
-package org.elsys.encryption;
+package org.elsys.fatcatserver.encryption;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
 
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
@@ -12,14 +13,15 @@ import java.nio.charset.StandardCharsets;
 import java.security.spec.KeySpec;
 import java.util.Base64;
 
+@Service
 public class AES256 {
     @Value("${encryption.secret.key}")
-    private static final String SECRET_KEY = "secret_key_password_thing";
+    private String SECRET_KEY;
 
     @Value("${encryption.iv}")
-    private static final String IV = "some long iv";
+    private String IV;
 
-    public static String encrypt(String strToEncrypt) {
+    public String encrypt(String strToEncrypt) {
         try {
             byte[] iv = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
             IvParameterSpec ivspec = new IvParameterSpec(iv);
@@ -38,7 +40,7 @@ public class AES256 {
         return null;
     }
 
-    public static String decrypt(String strToDecrypt) {
+    public String decrypt(String strToDecrypt) {
         try {
             byte[] iv = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
             IvParameterSpec ivspec = new IvParameterSpec(iv);
