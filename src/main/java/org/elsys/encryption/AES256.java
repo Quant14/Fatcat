@@ -1,5 +1,7 @@
 package org.elsys.encryption;
 
+import org.springframework.beans.factory.annotation.Value;
+
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
 import javax.crypto.SecretKeyFactory;
@@ -11,7 +13,10 @@ import java.security.spec.KeySpec;
 import java.util.Base64;
 
 public class AES256 {
+    @Value("${encryption.secret.key}")
     private static final String SECRET_KEY = "secret_key_password_thing";
+
+    @Value("${encryption.iv}")
     private static final String IV = "some long iv";
 
     public static String encrypt(String strToEncrypt) {
