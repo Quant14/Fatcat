@@ -6,10 +6,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Requests {
-    public Requests(){
+    public Requests() {
     }
 
-    public static void setAdminSettings(String totalGuards, String totalSectors){
+    public static void setAdminSettings(String totalGuards, String totalSectors) {
         OkHttpClient client = new OkHttpClient().newBuilder().build();
         MediaType mediaType = MediaType.parse("application/json");
         RequestBody body = RequestBody
@@ -27,7 +27,7 @@ public class Requests {
         }
     }
 
-    public static int getSectorsCount(){
+    public static int getSectorsCount() {
         OkHttpClient client = new OkHttpClient().newBuilder()
                 .build();
         MediaType mediaType = MediaType.parse("text/plain");
@@ -43,7 +43,7 @@ public class Requests {
         }
     }
 
-    public static void addPersonRequest(String name, String sector, String description, String danger){
+    public static void addPersonRequest(String name, String sector, String description, String danger) {
         OkHttpClient client = new OkHttpClient().newBuilder().build();
         MediaType mediaType = MediaType.parse("application/json");
         RequestBody body = RequestBody
@@ -60,7 +60,7 @@ public class Requests {
         }
     }
 
-    public static void deleteAllPersons(){
+    public static void deleteAllPersons() {
         OkHttpClient client = new OkHttpClient().newBuilder()
                 .build();
         MediaType mediaType = MediaType.parse("text/plain");

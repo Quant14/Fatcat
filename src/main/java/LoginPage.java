@@ -6,18 +6,17 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class LoginPage extends JFrame{
+public class LoginPage extends JFrame {
     private JPanel panel1;
     private JPasswordField pas;
     private JButton btn;
     private JLabel catlabel;
     private JLabel guard;
 
-    public LoginPage ()
-    {
+    public LoginPage() {
         setTitle("Login");
         setContentPane(panel1);
-        setMinimumSize(new Dimension(450,350));
+        setMinimumSize(new Dimension(450, 350));
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         catlabel.setIcon(new ImageIcon("src/main/resources/img/twotone_vpn_key_white_48dp.png"));
         setResizable(false);
@@ -27,19 +26,18 @@ public class LoginPage extends JFrame{
         btn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String pasword= pas.getText();
+                String pasword = pas.getText();
 
-                if(pasword.equals("yana"))
-                {
+                if (pasword.equals("yana")) {
                     dispose();
-                    addPerson person= new addPerson();
+                    addPerson person = new addPerson();
                 } else if (pasword.equals("admin")) {
                     dispose();
                     AdminPage admin = new AdminPage();
 
                 } else {
                     JOptionPane.showMessageDialog(LoginPage.this, "Wrong password!",
-                            "Error",JOptionPane.ERROR_MESSAGE);
+                            "Error", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });

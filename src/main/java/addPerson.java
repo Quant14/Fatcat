@@ -3,7 +3,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class addPerson extends JDialog{
+public class addPerson extends JDialog {
     private JPanel panel1;
     private JTextField tf1;
     private JTextField tf2;
@@ -15,11 +15,10 @@ public class addPerson extends JDialog{
     private JLabel iconLabel;
     private int sectorCnt;
 
-    public addPerson()
-    {
+    public addPerson() {
         setTitle("Add person");
         setContentPane(panel1);
-        setMinimumSize(new Dimension(550,450));
+        setMinimumSize(new Dimension(550, 450));
         setResizable(false);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         iconLabel.setIcon(new ImageIcon("src/main/resources/img/twotone_face_white_24dp.png"));
@@ -31,18 +30,15 @@ public class addPerson extends JDialog{
         nextButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(tf1.getText().isEmpty() || tf2.getText().isEmpty() ||
-                    ta1.getText().isEmpty() || tf4.getText().isEmpty())
-                {
+                if (tf1.getText().isEmpty() || tf2.getText().isEmpty() ||
+                        ta1.getText().isEmpty() || tf4.getText().isEmpty()) {
                     JOptionPane.showMessageDialog(addPerson.this, "Missing information!",
                             "Problem", JOptionPane.ERROR_MESSAGE);
-                } else
-                {
-                    int s= Integer.parseInt(tf4.getText());
-                    if(s>0 && s<=5)
-                    {
-                        int sec= Integer.parseInt(tf2.getText());
-                        if(sec <= sectorCnt && sec > 0){
+                } else {
+                    int s = Integer.parseInt(tf4.getText());
+                    if (s > 0 && s <= 5) {
+                        int sec = Integer.parseInt(tf2.getText());
+                        if (sec <= sectorCnt && sec > 0) {
                             Requests.addPersonRequest(tf1.getText(), tf2.getText(), ta1.getText(), tf4.getText());
                             JOptionPane.showMessageDialog(addPerson.this, "Person added!",
                                     "Added", JOptionPane.INFORMATION_MESSAGE);
@@ -50,13 +46,12 @@ public class addPerson extends JDialog{
                             tf2.setText("");
                             ta1.setText("");
                             tf4.setText("");
-                        }else {
+                        } else {
                             JOptionPane.showMessageDialog(addPerson.this, "Sector is invalid!",
                                     "Error", JOptionPane.ERROR_MESSAGE);
                         }
 
-                    }else
-                    {
+                    } else {
                         JOptionPane.showMessageDialog(addPerson.this, "Danger level is invalid!",
                                 "Error", JOptionPane.ERROR_MESSAGE);
                     }
@@ -68,7 +63,7 @@ public class addPerson extends JDialog{
             @Override
             public void actionPerformed(ActionEvent e) {
                 dispose();
-                Graphics graphics= new Graphics();
+                Graphics graphics = new Graphics();
             }
         });
     }

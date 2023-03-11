@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 
 import static java.lang.System.exit;
 
-public class AdminPage extends JFrame{
+public class AdminPage extends JFrame {
     private JPanel panel1;
     private JPanel adminPanel;
     private JButton OKButton;
@@ -13,22 +13,20 @@ public class AdminPage extends JFrame{
     private JTextField tf2;
     private JButton delete;
 
-    public AdminPage()
-    {
+    public AdminPage() {
         setTitle("Admin page");
         setContentPane(adminPanel);
-        setMinimumSize(new Dimension(450,350));
+        setMinimumSize(new Dimension(450, 350));
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setResizable(false);
         setVisible(true);
         OKButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(tf1.getText().isEmpty()|| tf2.getText().isEmpty())
-                {
-                    JOptionPane.showMessageDialog(AdminPage.this,"You need to fill all the boxes",
+                if (tf1.getText().isEmpty() || tf2.getText().isEmpty()) {
+                    JOptionPane.showMessageDialog(AdminPage.this, "You need to fill all the boxes",
                             "Problem", JOptionPane.ERROR_MESSAGE);
-                }else {
+                } else {
                     Requests.setAdminSettings(tf2.getText(), tf1.getText());
 
                     JOptionPane.showMessageDialog(AdminPage.this, "All done!", "done",
