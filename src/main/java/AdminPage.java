@@ -49,7 +49,7 @@ public class AdminPage extends JFrame{
         });
     }
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         AdminPage admin = new AdminPage();
-    }
+    }*/
 }

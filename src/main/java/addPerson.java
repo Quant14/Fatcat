@@ -1,11 +1,7 @@
-import mdlaf.MaterialLookAndFeel;
-import mdlaf.themes.JMarsDarkTheme;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.List;
 
 public class addPerson extends JDialog{
     private JPanel panel1;
@@ -77,12 +73,12 @@ public class addPerson extends JDialog{
         });
     }
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         try {
             UIManager.setLookAndFeel(new MaterialLookAndFeel(new JMarsDarkTheme()));
         } catch (UnsupportedLookAndFeelException e) {
             throw new RuntimeException(e);
         }
         addPerson add= new addPerson();
-    }
+    }*/
 }

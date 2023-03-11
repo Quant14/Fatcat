@@ -7,23 +7,27 @@ import java.util.List;
 
 public class Graphics extends JFrame{
     private JPanel panel1;
-    ArrayList<Integer> xData = new ArrayList<>();
-    ArrayList<Integer> yData = new ArrayList<>();
+    private ArrayList<Integer> sectors = new ArrayList<>();
+    private ArrayList<Integer> guardsCnt = new ArrayList<>();
 
-    List<Integer> chartArray;
+    private List<Integer> chartArray;
 
     public Graphics ()
     {
         chartArray = Requests.processData();
-        // Create Chart
-        XYChart chart = QuickChart.getChart("Sample Chart", "X", "Y", "y(x)", xData, yData);
+        for(int i = 1; i <= chartArray.size(); i++){
+            sectors.add(i);
+        }
+        guardsCnt.addAll(chartArray);
+
+        XYChart chart = QuickChart.getChart("", "Sector", "Guards", "guards per sector", sectors, guardsCnt);
 
         JPanel chartPanel = new XChartPanel<XYChart>(chart);
         add(chartPanel, BorderLayout.CENTER);
 
         setTitle("Graphics");
         setContentPane(chartPanel);
-        setMinimumSize(new Dimension(450,475));
+        setMinimumSize(new Dimension(600,450));
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
         chartPanel.setMaximumSize(new Dimension(400,400));
@@ -33,14 +37,9 @@ public class Graphics extends JFrame{
         chartPanel.setName("Graphic");
 
         setVisible(true);
-
-
-
-        //new SwingWrapper(chart).displayChart();
-
     }
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         Graphics graphics= new Graphics();
-    }
+    }*/
 }
