@@ -28,15 +28,15 @@ public class FatcatServerService {
 
     public AdminSettings setAdminSettings(AdminSettings adminSettings) {
         fatcatServerAdminSettingsRepository.deleteAll();
-        adminSettings.setTotalguards(AES256.encrypt(adminSettings.getTotalguards()));
-        adminSettings.setTotalsectors(AES256.encrypt(adminSettings.getTotalsectors()));
+        adminSettings.setTotalguards(adminSettings.getTotalguards());
+        adminSettings.setTotalsectors(adminSettings.getTotalsectors());
         return fatcatServerAdminSettingsRepository.save(adminSettings);
     }
 
     public AdminSettings getAdminSettings() {
         AdminSettings res = fatcatServerAdminSettingsRepository.findAll().get(0);
-        res.setTotalguards(AES256.decrypt(res.getTotalguards()));
-        res.setTotalsectors(AES256.decrypt(res.getTotalsectors()));
+        res.setTotalguards(res.getTotalguards());
+        res.setTotalsectors(res.getTotalsectors());
 
         return res;
     }
@@ -52,9 +52,9 @@ public class FatcatServerService {
 
     public Person createPerson(Person person) {
         person.setName(AES256.encrypt(person.getName()));
-        person.setSector(AES256.encrypt(person.getSector()));
-        person.setDescription(AES256.encrypt(person.getDescription()));
-        person.setDanger(AES256.encrypt(person.getDanger()));
+        person.setSector(person.getSector());
+        person.setDescription(person.getDescription());
+        person.setDanger(person.getDanger());
         return fatcatServerPersonRepository.save(person);
     }
 
@@ -63,9 +63,9 @@ public class FatcatServerService {
 
         for (Person person : fatcatServerPersonRepository.findAll()) {
             tempList.add(new Person(AES256.decrypt(person.getName()),
-                    AES256.decrypt(person.getSector()),
-                    AES256.decrypt(person.getDescription()),
-                    AES256.decrypt(person.getDanger())));
+                    person.getSector(),
+                    person.getDescription(),
+                    person.getDanger()));
         }
         return tempList;
     }
@@ -76,9 +76,9 @@ public class FatcatServerService {
 
     public List<Sectors> createSectors() {
         fatcatServerSectorsRepository.deleteAll();
-        String totalsectors = AES256.decrypt(fatcatServerAdminSettingsRepository.findAll().get(0).getTotalsectors());
+        Integer totalsectors = fatcatServerAdminSettingsRepository.findAll().get(0).getTotalsectors();
 
-        for (int i = 0; i < Integer.parseInt(totalsectors); i++) {
+        for (int i = 0; i < totalsectors; i++) {
             Sectors newSector = new Sectors();
             fatcatServerSectorsRepository.save(newSector);
         }
@@ -90,14 +90,14 @@ public class FatcatServerService {
         List<Sectors> tempList = new LinkedList<>();
 
         for (Sectors sector : fatcatServerSectorsRepository.findAll()) {
-            tempList.add(new Sectors(AES256.decrypt(sector.getGuards())));
+            tempList.add(new Sectors(sector.getGuards()));
 
         }
         return tempList;
     }
 
     public int getSectorCnt() {
-        return Integer.parseInt(AES256.decrypt(fatcatServerAdminSettingsRepository.findAll().get(0).getTotalsectors()));
+        return fatcatServerAdminSettingsRepository.findAll().get(0).getTotalsectors();
     }
 
     public void deleteAllPersons() {
@@ -108,7 +108,7 @@ public class FatcatServerService {
         List<Integer> res = new ArrayList<>();
 
         for (Sectors sector : sectors) {
-            res.add(Integer.valueOf(sector.getGuards()));
+            res.add(sector.getGuards());
         }
 
         return res;

@@ -11,20 +11,20 @@ public class Sectors {
     private Long id;
 
     @Column(name = "guards")
-    private String guards;
+    private Integer guards;
 
     public Sectors() {
     }
 
-    public Sectors(String guards) {
+    public Sectors(Integer guards) {
         this.guards = guards;
     }
 
-    public String getGuards() {
+    public Integer getGuards() {
         return guards;
     }
 
-    public void setGuards(String guards) {
+    public void setGuards(Integer guards) {
         this.guards = guards;
     }
 }

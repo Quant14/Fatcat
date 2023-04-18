@@ -5,18 +5,18 @@ USE fatcatDB;
 CREATE TABLE person(
                        id int PRIMARY KEY AUTO_INCREMENT,
                        name VARCHAR(100) NOT NULL,
-                       sector VARCHAR(40) NOT NULL,
-                       description VARCHAR(250) NOT NULL,
-                       danger VARCHAR(40) NOT NULL
+                       sector int NOT NULL,
+                       description VARCHAR(100) NOT NULL,
+                       danger int NOT NULL
 );
 
 CREATE TABLE sectors(
                         id int PRIMARY KEY AUTO_INCREMENT,
-                        guards VARCHAR(100)
+                        guards int
 );
 
 CREATE TABLE adminsettings(
                               id int PRIMARY KEY AUTO_INCREMENT,
-                              totalguards VARCHAR(100) NOT NULL,
-                              totalsectors VARCHAR(40) NOT NULL
+                              totalguards int NOT NULL,
+                              totalsectors int NOT NULL
 );

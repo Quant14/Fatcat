@@ -7,7 +7,6 @@ import org.elsys.fatcatserver.repository.FatcatServerSectorsRepository;
 import org.elsys.fatcatserver.service.FatcatServerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.elsys.fatcatserver.encryption.AES256;
 
 import java.util.HashMap;
 import java.util.List;
@@ -16,9 +15,6 @@ import java.util.Map;
 
 @Service
 public class GuardService {
-    @Autowired
-    AES256 AES256;
-
     @Autowired
     FatcatServerAdminSettingsRepository fatcatServerAdminSettingsRepository;
     @Autowired
@@ -36,10 +32,10 @@ public class GuardService {
     SectorDangerCalculater sectorDangerCalculater;
 
     public void setup_number_of() {
-        String settings = AES256.decrypt(fatcatServerAdminSettingsRepository.findAll().get(0).getTotalguards());
-        number_of_guards = Integer.parseInt(settings);
-        settings = AES256.decrypt(fatcatServerAdminSettingsRepository.findAll().get(0).getTotalsectors());
-        number_of_sectors = Integer.parseInt(settings);
+        Integer settings = fatcatServerAdminSettingsRepository.findAll().get(0).getTotalguards();
+        number_of_guards = settings;
+        settings = fatcatServerAdminSettingsRepository.findAll().get(0).getTotalsectors();
+        number_of_sectors = settings;
     }
 
     public void setup_map() {
@@ -66,8 +62,7 @@ public class GuardService {
             int percentage = Math.round((float) danger_of_sectors.get(i) / total_danger * 100);
             double guards_for_this_sector = number_of_guards * ((float) percentage / 100);
             guards_for_this_sector = Math.round(guards_for_this_sector);
-            String for_database = AES256.encrypt(Integer.toString((int) guards_for_this_sector));
-            fatcatServerSectorsRepository.findAll().get(i - 1).setGuards(for_database);
+            fatcatServerSectorsRepository.findAll().get(i - 1).setGuards((int) guards_for_this_sector);
         }
         fatcatServerSectorsRepository.flush();
     }

@@ -11,24 +11,24 @@ public class AdminSettings {
     private Long id;
 
     @Column(name = "totalguards")
-    private String totalguards;
+    private Integer totalguards;
 
     @Column(name = "totalsectors")
-    private String totalsectors;
+    private Integer totalsectors;
 
-    public String getTotalguards() {
+    public Integer getTotalguards() {
         return totalguards;
     }
 
-    public void setTotalguards(String totalguards) {
+    public void setTotalguards(Integer totalguards) {
         this.totalguards = totalguards;
     }
 
-    public String getTotalsectors() {
+    public Integer getTotalsectors() {
         return totalsectors;
     }
 
-    public void setTotalsectors(String totalsectors) {
+    public void setTotalsectors(Integer totalsectors) {
         this.totalsectors = totalsectors;
     }
 }
