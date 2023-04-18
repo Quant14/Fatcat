@@ -1,7 +1,5 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class addPerson extends JDialog {
     private JPanel panel1;
@@ -27,44 +25,38 @@ public class addPerson extends JDialog {
 
         setVisible(true);
 
-        nextButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (tf1.getText().isEmpty() || tf2.getText().isEmpty() ||
-                        ta1.getText().isEmpty() || tf4.getText().isEmpty()) {
-                    JOptionPane.showMessageDialog(addPerson.this, "Missing information!",
-                            "Problem", JOptionPane.ERROR_MESSAGE);
-                } else {
-                    int s = Integer.parseInt(tf4.getText());
-                    if (s > 0 && s <= 5) {
-                        int sec = Integer.parseInt(tf2.getText());
-                        if (sec <= sectorCnt && sec > 0) {
-                            Requests.addPersonRequest(tf1.getText(), tf2.getText(), ta1.getText(), tf4.getText());
-                            JOptionPane.showMessageDialog(addPerson.this, "Person added!",
-                                    "Added", JOptionPane.INFORMATION_MESSAGE);
-                            tf1.setText("");
-                            tf2.setText("");
-                            ta1.setText("");
-                            tf4.setText("");
-                        } else {
-                            JOptionPane.showMessageDialog(addPerson.this, "Sector is invalid!",
-                                    "Error", JOptionPane.ERROR_MESSAGE);
-                        }
-
+        nextButton.addActionListener(e -> {
+            if (tf1.getText().isEmpty() || tf2.getText().isEmpty() ||
+                    ta1.getText().isEmpty() || tf4.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(addPerson.this, "Missing information!",
+                        "Problem", JOptionPane.ERROR_MESSAGE);
+            } else {
+                int s = Integer.parseInt(tf4.getText());
+                if (s > 0 && s <= 5) {
+                    int sec = Integer.parseInt(tf2.getText());
+                    if (sec <= sectorCnt && sec > 0) {
+                        Requests.addPersonRequest(tf1.getText(), tf2.getText(), ta1.getText(), tf4.getText());
+                        JOptionPane.showMessageDialog(addPerson.this, "Person added!",
+                                "Added", JOptionPane.INFORMATION_MESSAGE);
+                        tf1.setText("");
+                        tf2.setText("");
+                        ta1.setText("");
+                        tf4.setText("");
                     } else {
-                        JOptionPane.showMessageDialog(addPerson.this, "Danger level is invalid!",
+                        JOptionPane.showMessageDialog(addPerson.this, "Sector is invalid!",
                                 "Error", JOptionPane.ERROR_MESSAGE);
                     }
-                }
 
+                } else {
+                    JOptionPane.showMessageDialog(addPerson.this, "Danger level is invalid!",
+                            "Error", JOptionPane.ERROR_MESSAGE);
+                }
             }
+
         });
-        doneButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                dispose();
-                Graphics graphics = new Graphics();
-            }
+        doneButton.addActionListener(e -> {
+            dispose();
+            Graphics graphics = new Graphics();
         });
     }
 

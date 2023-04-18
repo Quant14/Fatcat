@@ -18,7 +18,6 @@ public class Requests {
             throw new RuntimeException(e);
         }
     }
-
     public static void setAdminSettings(String totalGuards, String totalSectors) {
         OkHttpClient client = new OkHttpClient().newBuilder().build();
         MediaType mediaType = MediaType.parse("application/json");
@@ -31,6 +30,7 @@ public class Requests {
                 .build();
         try {
             Response response = client.newCall(request).execute();
+            assert response.body() != null;
             System.out.println(response.body().string());
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -47,6 +47,7 @@ public class Requests {
         try {
             Response response = client.newCall(request).execute();
 
+            assert response.body() != null;
             return Integer.parseInt(response.body().string());
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -94,6 +95,7 @@ public class Requests {
                 .build();
         try {
             Response response = client.newCall(request).execute();
+            assert response.body() != null;
             var stringBody = response.body().string();
 
             return Arrays.stream(stringBody.substring(1, stringBody.length() - 1).split(","))

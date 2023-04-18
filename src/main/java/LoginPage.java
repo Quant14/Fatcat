@@ -3,8 +3,6 @@ import mdlaf.themes.JMarsDarkTheme;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class LoginPage extends JFrame {
     private JPanel panel1;
@@ -23,22 +21,19 @@ public class LoginPage extends JFrame {
 
         setVisible(true);
 
-        btn.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String pasword = pas.getText();
+        btn.addActionListener(e -> {
+            String pasword = pas.getText();
 
-                if (pasword.equals("yana")) {
-                    dispose();
-                    addPerson person = new addPerson();
-                } else if (pasword.equals("admin")) {
-                    dispose();
-                    AdminPage admin = new AdminPage();
+            if (pasword.equals("yana")) {
+                dispose();
+                addPerson person = new addPerson();
+            } else if (pasword.equals("admin")) {
+                dispose();
+                AdminPage admin = new AdminPage();
 
-                } else {
-                    JOptionPane.showMessageDialog(LoginPage.this, "Wrong password!",
-                            "Error", JOptionPane.ERROR_MESSAGE);
-                }
+            } else {
+                JOptionPane.showMessageDialog(LoginPage.this, "Wrong password!",
+                        "Error", JOptionPane.ERROR_MESSAGE);
             }
         });
     }
